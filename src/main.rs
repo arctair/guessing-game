@@ -22,7 +22,13 @@ fn main() {
 
         println!("You guessed: {guess}");
 
-        let guess: u32 = guess.parse().expect("Number pl0x");
+        let guess: u32 = match guess.parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("{guess} is not a valid guess.");
+                continue;
+            }
+        };
 
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Less"),
