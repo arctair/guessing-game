@@ -13,13 +13,16 @@ fn main() {
         println!("Please input your guess.");
 
         let mut guess = String::new();
+
         io::stdin()
             .read_line(&mut guess)
             .expect("Failed to read line");
 
+        let guess = guess.trim();
+
         println!("You guessed: {guess}");
 
-        let guess: u32 = guess.trim().parse().expect("Number pl0x");
+        let guess: u32 = guess.parse().expect("Number pl0x");
 
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Less"),
